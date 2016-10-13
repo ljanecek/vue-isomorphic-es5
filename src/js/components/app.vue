@@ -1,0 +1,42 @@
+
+<template lang="pug">
+	div
+		ul
+			li(v-for="item in items") {{ item.name }}
+
+		a(v-on:click.prevent="plus", href="#") My age is: {{age}}
+
+		p
+			| lorem ipsum dolor
+</template>
+
+<script>
+	module.exports = {
+		name: 'Main',
+		replace: false,
+		data: function() {
+			return {
+				items: {
+					0: {
+						name: 'lol'
+					},
+					1: {
+						name: 'lol2'
+					}
+				},
+				age: 0
+			}
+		},
+		methods: {
+			onClick: function(){
+				this.items[0].name = 'Omfg Event!'
+			},
+			plus: function() {
+				this.age++;
+			},
+		},
+		created: function(){
+
+		}
+	}
+</script>

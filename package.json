@@ -1,0 +1,37 @@
+{
+  "name": "vuessr",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "browserify": "^13.1.0",
+    "compression": "^1.6.2",
+    "express": "^4.14.0",
+    "gulp-uglify": "^2.0.0",
+    "gulp-sourcemaps": "^1.7.3",
+    "gulp": "^3.9.1",
+    "lru-cache": "^4.0.1",
+    "node-sass": "^3.10.1",
+    "pug": "^2.0.0-beta6",
+    "vinyl-buffer": "^1.0.0",
+    "vue": "^2.0.3",
+    "vue-server-renderer": "^2.0.3",
+    "vinyl-source-stream": "^1.1.0",
+    "vue-router": "^2.0.1",
+    "vueify": "^9.2.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ljanecek/vue-isomorphic-es5.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ljanecek/vue-isomorphic-es5/issues"
+  },
+  "homepage": "https://github.com/ljanecek/vue-isomorphic-es5#readme"
+}
