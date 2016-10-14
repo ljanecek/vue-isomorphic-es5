@@ -7,6 +7,7 @@ process.env.VUE_ENV = 'server';
 var env = process.env.NODE_ENV || 'local',
 	compression = require('compression'),
     express = require('express'),
+	http = require('http'),
     path = require('path'),
     fs = require('fs'),
     app = express();
@@ -43,6 +44,28 @@ app.get('*', function(req, res) {
 });
 
 
-app.listen(3000, function() {
+var port = normalizePort(process.env.PORT || '3000');
+app.set('port', port);
+
+var server = http.createServer(app);
+
+server.listen(port, function() {
     console.log('Example app listening on port 3000!');
 });
+
+
+function normalizePort(val) {
+  var port = parseInt(val, 10);
+
+  if (isNaN(port)) {
+    // named pipe
+    return val;
+  }
+
+  if (port >= 0) {
+    // port number
+    return port;
+  }
+
+  return false;
+}
