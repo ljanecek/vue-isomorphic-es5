@@ -1,17 +1,11 @@
-# 
-Vue.js, Vueify, Browserify, Gulp, SSR, ES5, Isomorphic starter kit ✌🏻
+# vue-isomorphic-es5 ✌🏻
+
+> Vue.js 2, Vueify, Browserify, Gulp, SSR, ES5.
+Vue Isomorphic es5 starter kit for server side rendering.
+
+## Online Demo
 
 http://vue-ssr.herokuapp.com/
-
-Inspired:
-https://github.com/egoist/vue-isomorphic-starter
-
-
-
-# vue-isomorphic-es5
-
-> A Vue.js project with vue 2, Vueify, vue-router, Browserify, Gulp written in ES5.
-Vue Isomorphic es5 starter kit for server side rendering.
 
 ## Build Setup
 
