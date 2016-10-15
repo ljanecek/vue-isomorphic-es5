@@ -1,20 +1,29 @@
-var Router = require('vue-router'),
-    Vue = require('vue');
+var Vue = require('vue');
+var Router = require('vue-router');
+var _ = require('underscore');
+
+Vue.use(Router);
 
 var router = new Router({
+	linkActiveClass: 'active',
     mode: 'history',
     routes: [{
-        name: 'Main',
+        name: 'Home',
         path: '/',
-        component: require('./components/app.vue')
-    }]
+        component: require('./components/home.vue')
+    },
+	{
+		name: 'SomePage',
+		path: '/some-page',
+		component: require('./components/some-page.vue')
+	}]
 });
 
-var app = new Vue({
+var app = new Vue(_.extend({
     router: router
-});
+}, require('./components/app.vue')));
 
-module.export = {
+module.exports = {
     app: app,
     router: router
 };

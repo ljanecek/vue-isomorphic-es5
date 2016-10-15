@@ -1,4 +1,3 @@
-
 <template lang="pug">
 	div
 		ul
@@ -6,8 +5,12 @@
 
 		a(v-on:click.prevent="plus", href="#") My age is: {{age}}
 
-		p
-			| lorem ipsum dolor
+		ul
+			li
+				router-link(:to="{name: 'Home'}", exact) Home
+				router-link(:to="{name: 'SomePage'}") Some Page
+
+		router-view
 </template>
 
 <script>
