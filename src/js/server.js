@@ -12,9 +12,17 @@ module.exports = function(context){
 */
 module.exports = function(context) {
 
-	if(index.router){
-		index.router.push(context.url);
-	}
+    return new Promise(function(resolve, reject) {
 
-    return index.app;
+        if (!index) {
+            reject(index.app)
+        } else {
+
+			if (index.router) {
+		        index.router.push(context.url);
+		    }
+
+            resolve(index.app)
+        }
+    })
 }

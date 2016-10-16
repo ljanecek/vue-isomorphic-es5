@@ -17,6 +17,12 @@
 	module.exports = {
 		name: 'Main',
 		replace: false,
+		watch: {
+			'$route': function(to, from) {
+				if(typeof document != 'undefined')
+					document.title = to.meta.title
+			}
+		},
 		data: function() {
 			return {
 				items: {
@@ -36,7 +42,7 @@
 			},
 			plus: function() {
 				this.age++;
-			},
+			}
 		},
 		created: function(){
 

@@ -6,6 +6,7 @@
 <script>
 	module.exports = {
 		name: 'Home',
+		title: 'Home Page Title',
 		data: function(){
 			return {
 				title: 'Some Page'

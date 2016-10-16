@@ -17,7 +17,9 @@ var env = process.env.NODE_ENV || 'local',
 var renderer = require('vue-server-renderer');
 var serverBundleFilePath = path.join(__dirname, './dist/js/server.js')
 var serverBundleFileCode = fs.readFileSync(serverBundleFilePath, 'utf8');
-var bundleRenderer = renderer.createBundleRenderer(serverBundleFileCode, {});
+var bundleRenderer = renderer.createBundleRenderer(serverBundleFileCode, {
+	cache: require('lru-cache')({ max: 10000 })
+});
 
 
 app.use(compression());
@@ -30,13 +32,17 @@ app.get('*', function(req, res) {
         url: req.url
     })
 
-    res.write('<!DOCTYPE html><html><head><title>...</title></head><body>')
+	var title = 'Test'
 
-    stream.on('data', function(chunk) {
+	var i = 0;
+
+
+
+	stream.on('app', function(app){
+		res.write('<!DOCTYPE html><html><head><title>'+app.$route.meta.title+'</title></head><body>')
+	}).on('data', function(chunk) {
         res.write(chunk)
-    })
-
-    stream.on('end', function() {
+    }).on('end', function() {
         res.end('<script src="js/app.js"></script></body></html>')
     })
 });
