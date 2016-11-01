@@ -20,7 +20,9 @@ var vue = require('./dist/js/server.js');
 var serverBundleFilePath = path.join(__dirname, './dist/js/server.js')
 var serverBundleFileCode = fs.readFileSync(serverBundleFilePath, 'utf8');
 var bundleRenderer = renderer.createBundleRenderer(serverBundleFileCode, {
-	cache: require('lru-cache')({ max: 10000 })
+    cache: require('lru-cache')({
+        max: 10000
+    })
 });
 
 
@@ -34,18 +36,18 @@ app.get('*', function(req, res) {
         url: req.url
     })
 
-	vue({
+    vue({
         url: req.url
-    }).then(function(data){
+    }).then(function(data) {
 
-		res.write('<!DOCTYPE html><html><head><title>'+data.$route.meta.title+'</title></head><body>')
+        res.write('<!DOCTYPE html><html><head><title>' + data.$route.meta.title + '</title></head><body>')
 
-		stream.on('data', function(chunk) {
-	        res.write(chunk)
-	    }).on('end', function() {
-	        res.end('<script src="js/app.js"></script></body></html>')
-	    })
-	})
+        stream.on('data', function(chunk) {
+            res.write(chunk)
+        }).on('end', function() {
+            res.end('<script src="js/app.js"></script></body></html>')
+        })
+    })
 
 });
 
