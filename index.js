@@ -15,6 +15,8 @@ var env = process.env.NODE_ENV || 'local',
 
 // Server-Side Bundle File
 var renderer = require('vue-server-renderer');
+var vue = require('./dist/js/server.js');
+
 var serverBundleFilePath = path.join(__dirname, './dist/js/server.js')
 var serverBundleFileCode = fs.readFileSync(serverBundleFilePath, 'utf8');
 var bundleRenderer = renderer.createBundleRenderer(serverBundleFileCode, {
@@ -22,9 +24,9 @@ var bundleRenderer = renderer.createBundleRenderer(serverBundleFileCode, {
 });
 
 
+
 app.use(compression());
 app.use('/', express.static('dist'));
-
 
 app.get('*', function(req, res) {
 
@@ -32,19 +34,19 @@ app.get('*', function(req, res) {
         url: req.url
     })
 
-	var title = 'Test'
+	vue({
+        url: req.url
+    }).then(function(data){
 
-	var i = 0;
+		res.write('<!DOCTYPE html><html><head><title>'+data.$route.meta.title+'</title></head><body>')
 
+		stream.on('data', function(chunk) {
+	        res.write(chunk)
+	    }).on('end', function() {
+	        res.end('<script src="js/app.js"></script></body></html>')
+	    })
+	})
 
-
-	stream.on('app', function(app){
-		res.write('<!DOCTYPE html><html><head><title>'+app.$route.meta.title+'</title></head><body>')
-	}).on('data', function(chunk) {
-        res.write(chunk)
-    }).on('end', function() {
-        res.end('<script src="js/app.js"></script></body></html>')
-    })
 });
 
 
